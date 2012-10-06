@@ -10,6 +10,9 @@
 
 @implementation ABDContentCell
 
+@synthesize name=_name, phone=_phone, email=_email;
+@synthesize foldIcon=_foldIcon;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

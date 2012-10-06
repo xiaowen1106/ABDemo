@@ -10,8 +10,10 @@
 #import <AddressBook/AddressBook.h>
 
 #import "ABDContactController.h"
+#import "ABDContentCell.h"
+#import "ABDDetailCell.h"
 
-@interface ABDMasterViewController : UITableViewController
+@interface ABDMasterViewController : UITableViewController 
 
 @property (strong, nonatomic) ABDContactController *contactController;
 - (IBAction)sendContacts:(UIBarButtonItem *)sender;

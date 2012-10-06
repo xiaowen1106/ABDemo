@@ -12,10 +12,10 @@
 
 #import "ABDDetailViewController.h"
 
-//@interface ABDMasterViewController () {
-//    NSMutableArray *_objects;
-//}
-//@end
+/*@interface ABDMasterViewController () {
+    NSInteger showADetail;
+}
+@end*/
 
 @implementation ABDMasterViewController
 
@@ -63,28 +63,76 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.contactController.nPeople;
+    //Trick, but not good, check it
+    
+    if(self.tableView.tag!=-1){
+        return self.contactController.nPeople + 1;
+    }else{
+        return self.contactController.nPeople;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ContactCell";
+    // Two case: for detail and normal content
+    
+    NSInteger pIndex;
+    ABRecordRef ref;
     
     static NSDateFormatter *formatter = nil;
     if (formatter == nil) {
         formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterMediumStyle];
     }
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    ABRecordRef ref = CFArrayGetValueAtIndex( self.contactController.allPeople, indexPath.row );
-    NSString *firstName = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonFirstNameProperty);
-    NSString *lastName = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonLastNameProperty);
-    if (!firstName) firstName = @" ";
-    if (!lastName) lastName = @" ";
-    [[cell textLabel] setText:[NSString stringWithFormat:@"%@ %@",lastName, firstName]];
     
-    return cell;
+    if(self.tableView.tag != -1 && indexPath.row == self.tableView.tag + 1){
+        ABDDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell"];
+        pIndex = self.tableView.tag;
+        ref = CFArrayGetValueAtIndex( self.contactController.allPeople, pIndex);
+        NSString *address = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonAddressProperty);
+        NSString *company = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonOrganizationProperty);
+        
+        return cell;
+    }else{
+        ABDContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContentCell"];
+        pIndex = indexPath.row;
+        ref = CFArrayGetValueAtIndex( self.contactController.allPeople, pIndex);
+        NSString *firstName = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonFirstNameProperty);
+        NSString *lastName = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonLastNameProperty);
+        if (!firstName) firstName = @" ";
+        if (!lastName) lastName = @" ";
+        cell.name.text = [NSString stringWithFormat:@"%@ %@",lastName, firstName];
+        
+        NSMutableString *phone = [NSMutableString stringWithString:@""];
+        const ABMultiValueRef *phones = ABRecordCopyValue(ref, kABPersonPhoneProperty);
+        for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++)
+        {
+            CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
+            //CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
+            //NSString *phoneLabel =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel);
+            NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
+            CFRelease(phoneNumberRef);
+            //CFRelease(locLabel);
+            [phone appendFormat:@"%@ ",phoneNumber];
+        }
+        cell.phone.text = phone;
+        
+        NSMutableString *email = [NSMutableString stringWithString:@""];
+        const ABMultiValueRef *emails = ABRecordCopyValue(ref, kABPersonEmailProperty);
+        for(CFIndex j = 0; j < ABMultiValueGetCount(emails); j++)
+        {
+            CFStringRef emailRef = ABMultiValueCopyValueAtIndex(emails, j);
+            //CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(emails, j);
+            //NSString *phoneLabel =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel);
+            NSString *emailad = (__bridge NSString *)emailRef;
+            CFRelease(emailRef);
+            //CFRelease(locLabel);
+            [email appendFormat:@"%@ ",emailad];
+        }
+        cell.email.text = email;
+
+        return cell;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,11 +180,40 @@
 }
 */
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showContactDetail"]) {
-        ABDDetailViewController *detailViewController = [segue destinationViewController];
-        detailViewController.contactRef = CFArrayGetValueAtIndex( self.contactController.allPeople, [self.tableView indexPathForSelectedRow].row );
+    if ([[segue identifier] isEqualToString:@"showDetails"]) {
+        NSLog(@"in");
+    }
+}*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSIndexPath *index;
+    NSInteger tempTag = self.tableView.tag;
+    //ABDContentCell *motherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if(self.tableView.tag == -1){
+        self.tableView.tag = indexPath.row;
+        //motherCell.foldIcon.hidden = NO;
+        index = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor lightGrayColor];
+    }else{
+        self.tableView.tag = -1;
+        /*ABDContentCell *oldMotherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:tempTag inSection:indexPath.section]];
+        oldMotherCell.foldIcon.hidden = YES;*/
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:tempTag+1 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationFade];
+        if(tempTag != indexPath.row){
+            NSInteger newIndex = indexPath.row;
+            if(indexPath.row > tempTag + 1){
+                newIndex = indexPath.row -1;
+            }
+            self.tableView.tag = newIndex;
+            //motherCell.foldIcon.hidden = NO;
+            index = [NSIndexPath indexPathForRow:newIndex+1 inSection:indexPath.section];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor lightGrayColor];
+        }
     }
 }
 
