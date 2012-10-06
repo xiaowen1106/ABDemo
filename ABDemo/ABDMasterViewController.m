@@ -191,28 +191,31 @@
 {
     NSIndexPath *index;
     NSInteger tempTag = self.tableView.tag;
-    //ABDContentCell *motherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:indexPath];
+    ABDContentCell *motherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:indexPath];
     if(self.tableView.tag == -1){
         self.tableView.tag = indexPath.row;
-        //motherCell.foldIcon.hidden = NO;
+        motherCell.line.hidden = YES;
         index = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
         [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor lightGrayColor];
+        [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor blackColor];
+        motherCell.foldIcon.hidden = NO;
     }else{
         self.tableView.tag = -1;
-        /*ABDContentCell *oldMotherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:tempTag inSection:indexPath.section]];
-        oldMotherCell.foldIcon.hidden = YES;*/
+        ABDContentCell *oldMotherCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:tempTag inSection:indexPath.section]];
+        motherCell.line.hidden = NO;
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:tempTag+1 inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationFade];
+        oldMotherCell.foldIcon.hidden = YES;
         if(tempTag != indexPath.row){
             NSInteger newIndex = indexPath.row;
             if(indexPath.row > tempTag + 1){
                 newIndex = indexPath.row -1;
             }
             self.tableView.tag = newIndex;
-            //motherCell.foldIcon.hidden = NO;
+            motherCell.line.hidden = YES;
             index = [NSIndexPath indexPathForRow:newIndex+1 inSection:indexPath.section];
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor lightGrayColor];
+            [tableView cellForRowAtIndexPath:index].backgroundColor = [UIColor blackColor];
+            motherCell.foldIcon.hidden = NO;
         }
     }
 }
