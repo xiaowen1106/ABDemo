@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ABDDetailSubView.h"
 
 @interface ABDContentCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
-@property (weak, nonatomic) IBOutlet UILabel *email;
-@property (weak, nonatomic) IBOutlet UIImageView *foldIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *line;
+@property (weak, nonatomic) IBOutlet ABDDetailSubView *subview;
 
+@property (weak, nonatomic) IBOutlet UILabel *email;
 @end

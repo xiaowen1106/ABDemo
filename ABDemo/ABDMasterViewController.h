@@ -11,7 +11,6 @@
 
 #import "ABDContactController.h"
 #import "ABDContentCell.h"
-#import "ABDDetailCell.h"
 
 @interface ABDMasterViewController : UITableViewController 
 

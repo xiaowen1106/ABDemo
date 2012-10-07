@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1F1190BC16203BBF008B59B7 /* ABDContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1190BB16203BBF008B59B7 /* ABDContentCell.m */; };
-		1F1190C016203F3F008B59B7 /* ABDDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1190BF16203F3F008B59B7 /* ABDDetailCell.m */; };
 		1F1191B5162085F6008B59B7 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F1191B4162085F6008B59B7 /* up.png */; };
 		1F7EF24216208EDE00864FEE /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7EF24116208EDE00864FEE /* line.png */; };
+		1F7EF24E1621B1FE00864FEE /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F7EF24D1621B1FE00864FEE /* background.png */; };
+		1F7EF2511621B95F00864FEE /* ABDDetailSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7EF2501621B95F00864FEE /* ABDDetailSubView.m */; };
 		320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320AF8492C47A4D819F7C450 /* QuartzCore.framework */; };
 		BC0929AA161B0C8A00DAF78E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0929A9161B0C8A00DAF78E /* UIKit.framework */; };
 		BC0929AC161B0C8A00DAF78E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0929AB161B0C8A00DAF78E /* Foundation.framework */; };
@@ -30,10 +31,11 @@
 /* Begin PBXFileReference section */
 		1F1190BA16203BBF008B59B7 /* ABDContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDContentCell.h; sourceTree = "<group>"; };
 		1F1190BB16203BBF008B59B7 /* ABDContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDContentCell.m; sourceTree = "<group>"; };
-		1F1190BE16203F3F008B59B7 /* ABDDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDDetailCell.h; sourceTree = "<group>"; };
-		1F1190BF16203F3F008B59B7 /* ABDDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDDetailCell.m; sourceTree = "<group>"; };
 		1F1191B4162085F6008B59B7 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		1F7EF24116208EDE00864FEE /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		1F7EF24D1621B1FE00864FEE /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		1F7EF24F1621B95F00864FEE /* ABDDetailSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABDDetailSubView.h; sourceTree = "<group>"; };
+		1F7EF2501621B95F00864FEE /* ABDDetailSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABDDetailSubView.m; sourceTree = "<group>"; };
 		320AF8492C47A4D819F7C450 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.frameworks; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BC0929A5161B0C8A00DAF78E /* ABDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ABDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0929A9161B0C8A00DAF78E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -109,8 +111,8 @@
 				BC0929C1161B0C8A00DAF78E /* MainStoryboard.storyboard */,
 				BC0929C4161B0C8A00DAF78E /* ABDMasterViewController.h */,
 				BC0929C5161B0C8A00DAF78E /* ABDMasterViewController.m */,
-				1F1190BE16203F3F008B59B7 /* ABDDetailCell.h */,
-				1F1190BF16203F3F008B59B7 /* ABDDetailCell.m */,
+				1F7EF24F1621B95F00864FEE /* ABDDetailSubView.h */,
+				1F7EF2501621B95F00864FEE /* ABDDetailSubView.m */,
 				1F1190BA16203BBF008B59B7 /* ABDContentCell.h */,
 				1F1190BB16203BBF008B59B7 /* ABDContentCell.m */,
 				BC0929D7161B10CE00DAF78E /* ABDContactController.h */,
@@ -123,6 +125,7 @@
 		BC0929B0161B0C8A00DAF78E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1F7EF24D1621B1FE00864FEE /* background.png */,
 				1F7EF24116208EDE00864FEE /* line.png */,
 				1F1191B4162085F6008B59B7 /* up.png */,
 				BC0929B1161B0C8A00DAF78E /* ABDemo-Info.plist */,
@@ -195,6 +198,7 @@
 				BC0929C3161B0C8A00DAF78E /* MainStoryboard.storyboard in Resources */,
 				1F1191B5162085F6008B59B7 /* up.png in Resources */,
 				1F7EF24216208EDE00864FEE /* line.png in Resources */,
+				1F7EF24E1621B1FE00864FEE /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +214,7 @@
 				BC0929C6161B0C8A00DAF78E /* ABDMasterViewController.m in Sources */,
 				BC0929D9161B10CE00DAF78E /* ABDContactController.m in Sources */,
 				1F1190BC16203BBF008B59B7 /* ABDContentCell.m in Sources */,
-				1F1190C016203F3F008B59B7 /* ABDDetailCell.m in Sources */,
+				1F7EF2511621B95F00864FEE /* ABDDetailSubView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
