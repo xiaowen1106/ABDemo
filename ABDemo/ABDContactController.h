@@ -17,6 +17,6 @@
 
 - (NSUInteger)countOfList;
 - (NSString *)objectInListAtIndex:(NSUInteger)theIndex;
-- (BOOL)sendContacts;
+- (void)sendContactsWithCallback:(void (^)(void))callback inContext:(id)context;
 
 @end

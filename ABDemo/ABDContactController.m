@@ -66,7 +66,8 @@
     return ([self.contactList objectAtIndex:theIndex]);
 }
 
-- (BOOL)sendContacts {
+- (void)sendContactsWithCallback:(void (^)(void))callback inContext:(id)context
+{
     
     CFArrayRef allPeople = self.allPeople;
     CFIndex nPeople = self.nPeople;
@@ -85,11 +86,10 @@
         
 //        [encodedParam removeAllObjects];
     }
-    BOOL sentOK = [self sendPost:encodedParam];
-    return sentOK;
+    [self sendPost:encodedParam WithCallback:callback InContext:context];
 }
 
-- (BOOL)sendPost:(NSArray *)encodedParam
+- (void)sendPost:(NSArray *)encodedParam WithCallback:(void (^)(void))callback InContext:(id)context
 {
     NSString * post = [encodedParam componentsJoinedByString:@"&"];
     NSData * postData = [post dataUsingEncoding:NSASCIIStringEncoding];
@@ -102,10 +102,9 @@
     
     NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (theConnection) {
-        NSLog(@"Connection succeeded!");
-        return YES;
+        callback();
     }else {
-        return NO;
+        
     }
 }
 

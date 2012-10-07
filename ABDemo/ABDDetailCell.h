@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ABDDetailCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UILabel *birthday;
+@property (weak, nonatomic) IBOutlet UILabel *company;
 
 @end

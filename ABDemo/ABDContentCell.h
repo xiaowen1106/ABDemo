@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *phone;
 @property (weak, nonatomic) IBOutlet UILabel *email;
 @property (weak, nonatomic) IBOutlet UIImageView *foldIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *line;
 
 @end
