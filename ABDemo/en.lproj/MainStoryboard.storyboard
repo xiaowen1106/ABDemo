@@ -126,35 +126,6 @@
         <image name="line.png" width="500" height="1"/>
         <image name="up.png" width="48" height="24"/>
     </resources>
-    <classes>
-        <class className="ABDContentCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ABDContentCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="email" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="foldIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="line" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="name" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="phone" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ABDDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ABDDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="birthday" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="company" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ABDMasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ABDMasterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sendContacts:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

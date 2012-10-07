@@ -220,15 +220,11 @@
 
 - (IBAction)sendContacts:(UIBarButtonItem *)sender {
     
-    NSString *message;
-    BOOL sentOk = [self.contactController sendContacts];
-    if (sentOk) {
-        message = @"Contact data has been successfully sent to server!";
-    } else {
-        message = @"Connection failed!";
-    }
-    UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"ABDemo" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
+    UIActionSheet *bottomBar = [[UIActionSheet alloc]initWithTitle:@"Sending data to server..." delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    [bottomBar showInView:self.tableView];
+    [self.contactController sendContactsWithCallback:^{
+        [bottomBar dismissWithClickedButtonIndex:0 animated:YES];
+    } inContext:self];
 }
 
 @end
