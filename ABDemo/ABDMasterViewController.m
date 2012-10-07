@@ -112,6 +112,8 @@
     
     if([contactSelected isEqual:indexPath]){
         cell.subview.hidden = NO;
+    }else{
+        cell.subview.hidden = YES;
     }
 
     return cell;
@@ -178,14 +180,14 @@
     }
 }*/
 
--(void)hideSubview:(ABDContentCell*)cell
+/*-(void)hideSubview:(ABDContentCell*)cell
 {
     cell.subview.hidden = YES;
-}
+}*/
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *oldSelected = contactSelected;
+    //NSIndexPath *oldSelected = contactSelected;
     if(contactSelected == NULL){
         contactSelected = indexPath;
     }else{
@@ -197,14 +199,14 @@
     }
     
     [tableView beginUpdates];
-    //[tableView reloadData];
+    [tableView reloadData];
     
-    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:oldSelected,nil] withRowAnimation:UITableViewRowAnimationNone];
+    /*[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:oldSelected,nil] withRowAnimation:UITableViewRowAnimationNone];
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:contactSelected,nil] withRowAnimation:UITableViewRowAnimationFade];
     ABDContentCell *oldCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:oldSelected];
     //[tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self performSelector:@selector(hideSubview:) withObject:oldCell afterDelay:0.2];
-    //oldCell.subview.hidden = YES;
+    //oldCell.subview.hidden = YES;*/
     [tableView endUpdates];
     
     /*NSIndexPath *index;
