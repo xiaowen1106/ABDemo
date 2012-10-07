@@ -10,6 +10,8 @@
 
 @implementation ABDDetailCell
 
+@synthesize address=_address, company = _company, birthday=_birthday;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

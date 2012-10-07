@@ -139,6 +139,11 @@
         </class>
         <class className="ABDDetailCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ABDDetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="birthday" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="company" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="ABDMasterViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ABDMasterViewController.h"/>

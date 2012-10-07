@@ -10,8 +10,6 @@
 
 #import "ABDMasterViewController.h"
 
-#import "ABDDetailViewController.h"
-
 /*@interface ABDMasterViewController () {
     NSInteger showADetail;
 }
