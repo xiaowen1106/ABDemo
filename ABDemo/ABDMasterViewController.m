@@ -81,7 +81,14 @@
         [formatter setDateStyle:NSDateFormatterMediumStyle];
     }
         //ABDContentCell *cell = [[ABDContentCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ContentCell"];
-        ABDContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContentCell"];
+    ABDContentCell *cell;
+    
+    if([contactSelected isEqual:indexPath]){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ContentDetailCell"];
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ContentCell"];
+    }
+        
         pIndex = indexPath.row;
         ref = CFArrayGetValueAtIndex( self.contactController.allPeople, pIndex);
         NSString *firstName = (__bridge NSString *)ABRecordCopyValue(ref, kABPersonFirstNameProperty);
@@ -109,12 +116,6 @@
         }else{
             cell.email.text = @"";
         }
-    
-    if([contactSelected isEqual:indexPath]){
-        cell.subview.hidden = NO;
-    }else{
-        cell.subview.hidden = YES;
-    }
 
     return cell;
 }
@@ -187,7 +188,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSIndexPath *oldSelected = contactSelected;
+    NSIndexPath *oldSelected = contactSelected;
     if(contactSelected == NULL){
         contactSelected = indexPath;
     }else{
@@ -199,14 +200,13 @@
     }
     
     [tableView beginUpdates];
-    [tableView reloadData];
+    //[tableView reloadData];
     
-    /*[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:oldSelected,nil] withRowAnimation:UITableViewRowAnimationNone];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:oldSelected,nil] withRowAnimation:UITableViewRowAnimationNone];
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:contactSelected,nil] withRowAnimation:UITableViewRowAnimationFade];
-    ABDContentCell *oldCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:oldSelected];
-    //[tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self performSelector:@selector(hideSubview:) withObject:oldCell afterDelay:0.2];
-    //oldCell.subview.hidden = YES;*/
+    //ABDContentCell *oldCell = (ABDContentCell *)[tableView cellForRowAtIndexPath:oldSelected];
+    //[self performSelector:@selector(hideSubview:) withObject:oldCell afterDelay:0.2];
+    //oldCell.subview.hidden = YES;
     [tableView endUpdates];
     
     /*NSIndexPath *index;

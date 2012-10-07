@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContentCell" rowHeight="200" id="lJ0-d7-vTF" customClass="ABDContentCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContentDetailCell" rowHeight="200" id="lJ0-d7-vTF" customClass="ABDContentCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -60,7 +60,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0y-tY-Cky" customClass="ABDDetailSubView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0y-tY-Cky" customClass="ABDDetailSubView">
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="up.png" translatesAutoresizingMaskIntoConstraints="NO" id="hND-1N-HRz">
                                                     <constraints>
@@ -177,6 +177,58 @@
                                     <outlet property="name" destination="Rqc-8i-ZeO" id="5iJ-Ex-dpU"/>
                                     <outlet property="phone" destination="85v-zU-fvP" id="V75-i3-Jsy"/>
                                     <outlet property="subview" destination="n0y-tY-Cky" id="jXw-it-1ze"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContentCell" rowHeight="75" id="F15-yg-1pS" customClass="ABDContentCell">
+                                <rect key="frame" x="0.0" y="222" width="320" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY6-y1-nUo">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="eGn-OS-CMX"/>
+                                                <constraint firstAttribute="width" constant="289" id="nLj-nG-AJw"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-KP-p8J">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="GDV-jb-Gf8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" contentMode="left" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbK-QL-j2i">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="crI-10-O5Y"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="JbK-QL-j2i" firstAttribute="leading" secondItem="uY6-y1-nUo" secondAttribute="leading" type="default" id="07l-0a-Sgk"/>
+                                    <constraint firstItem="uY6-y1-nUo" firstAttribute="top" secondItem="F15-yg-1pS" secondAttribute="top" constant="5" id="4bg-2R-nFG"/>
+                                    <constraint firstItem="jyg-KP-p8J" firstAttribute="leading" secondItem="JbK-QL-j2i" secondAttribute="leading" type="default" id="KJ9-ZL-XaE"/>
+                                    <constraint firstAttribute="trailing" secondItem="JbK-QL-j2i" secondAttribute="trailing" constant="20" type="default" id="M9W-xd-6JL"/>
+                                    <constraint firstItem="JbK-QL-j2i" firstAttribute="top" secondItem="F15-yg-1pS" secondAttribute="top" constant="49" type="user" id="QHO-jT-hZp"/>
+                                    <constraint firstAttribute="trailing" secondItem="uY6-y1-nUo" secondAttribute="trailing" constant="20" type="default" id="gTs-Of-dRn"/>
+                                    <constraint firstItem="jyg-KP-p8J" firstAttribute="top" secondItem="F15-yg-1pS" secondAttribute="top" constant="28" id="rd2-4r-Eqk"/>
+                                    <constraint firstAttribute="trailing" secondItem="jyg-KP-p8J" secondAttribute="trailing" constant="20" type="default" id="w4r-hq-vkc"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="email" destination="JbK-QL-j2i" id="W3j-SR-2pE"/>
+                                    <outlet property="name" destination="uY6-y1-nUo" id="YaL-Nm-Got"/>
+                                    <outlet property="phone" destination="jyg-KP-p8J" id="c3T-3Y-PWS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
